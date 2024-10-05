@@ -9,74 +9,31 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="assest/plugins/fontawesome-free/css/all.min.css">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="assest/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+ <!-- DataTables -->
+ <link rel="stylesheet" href="assest/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="assest/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="assest/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="assest/dist/css/adminlte.min.css">
 <!-- Theme style -->
 <link rel="icon" href="assest/dist/img/Logo_POS.png">
-  
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
- 
-  <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-body login-card-body">
-    <div class="login-logo">
-    <img src="assest/dist/img/logo_login.png" alt="" width="200">
-  </div>
 
-      <form action="" method="post">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Usuario" name="usuario">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password" name="password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-8">
-           
-          </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Acceder</button>
-          </div>
-          <!-- /.col -->
-        </div>
-        <?php
-        $login=new ControladorUsuario();
-        $login->ctrIngresoUsuario();
-        
-        ?>
-      </form>
+<?php
+if(isset($_GET["ruta"])){
 
-    </div>
-    <!-- /.login-card-body -->
-  </div>
-</div>
-<!-- /.login-box -->
+  if($_GET["ruta"]=="inicio"||
+    $_GET["ruta"]=="VUsuario"){
+    include "asideMenu.php";
+  
+    include $_GET["ruta"].".php";
 
-<!-- jQuery -->
-<script src="assest/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="assest/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="assest/dist/js/adminlte.min.js"></script>
-</body>
-
-
-
-
+    include "footer.php";
+}
+}
+else{
+  include "vista/login.php";
+}
+?>
 
 </html>
