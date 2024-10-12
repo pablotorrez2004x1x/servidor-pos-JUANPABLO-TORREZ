@@ -32,6 +32,8 @@
 <script src="assest/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="assest/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="assest/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="assest/plugins/sweetalert2/sweetalert2.min.js"></script>
 
 <script src="assest/js/usuario.js"></script>
 
@@ -49,6 +51,7 @@
       <!-- jquery-validation -->
 <script src="assest/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script src="assest/plugins/jquery-validation/additional-methods.min.js"></script>
+<script src="assest/plugins/jquery-validation/localization/messages_es.js"></script>
 
 <script>
   $(function () {

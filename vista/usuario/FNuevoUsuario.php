@@ -8,15 +8,15 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="">Login Usuario</label>
-                    <input type="text" class="form-control" name="login">
+                    <input type="text" class="form-control" name="login" id="login">
                 </div>
                 <div class="form-group">
                     <label for="">Password</label>
-                    <input type="password" class="form-control" name="password">
+                    <input type="password" class="form-control" name="password" id="password">
                 </div>
                 <div class="form-group">
                     <label for="">Repetir Password</label>
-                    <input type="password" class="form-control" name="vrPassword">
+                    <input type="password" class="form-control" name="vrPassword" id="vrPassword">
                 </div>
             </div>
             <div class="modal-footer justify-content-between">
@@ -35,29 +35,20 @@ $(function () {
 
   $('#FRegUsuario').validate({
     rules: {
-      email: {
+      login: {
         required: true,
-        email: true,
+        minlength: 3,
       },
       password: {
         required: true,
-        minlength: 5
+        minlength: 3
       },
-      terms: {
-        required: true
+      vrPassword: {
+        required: true,
+        minlength: 3
       },
     },
-    messages: {
-      email: {
-        required: "Please enter a email address",
-        email: "Please enter a valid email address"
-      },
-      password: {
-        required: "Please provide a password",
-        minlength: "Your password must be at least 5 characters long"
-      },
-      terms: "Please accept our terms"
-    },
+    
     errorElement: 'span',
     errorPlacement: function (error, element) {
       error.addClass('invalid-feedback');

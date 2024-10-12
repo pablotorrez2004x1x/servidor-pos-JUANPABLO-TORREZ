@@ -43,7 +43,18 @@
                 <td><?php echo $value["id_usuario"];?></td>
                 <td><?php echo $value["login_usuario"];?></td>
                 <td><?php echo $value["perfil"];?></td>
-                <td><?php echo $value["estado"];?></td>
+
+                <td><?php 
+                if($value["estado"]==1){
+                  ?>
+                  <span class="badge badge-success">Activo</span>
+                  <?php
+                }else{
+                  ?>
+                   <span class="badge badge-danger">Inactivo</span>
+                   <?php
+                }
+                ?></td>
                 <td><?php echo $value["ultimo_login"];?></td>
                 <td><?php echo $value["fecha_registro"];?></td>      
                 <td>

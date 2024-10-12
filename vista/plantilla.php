@@ -17,9 +17,12 @@
   <link rel="stylesheet" href="assest/dist/css/adminlte.min.css">
 <!-- Theme style -->
 <link rel="icon" href="assest/dist/img/Logo_POS.png">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="assest/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 </head>
 
 <?php
+
 if(isset($_GET["ruta"])){
 
   if($_GET["ruta"]=="inicio"||
