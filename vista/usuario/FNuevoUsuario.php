@@ -1,4 +1,4 @@
-<form action="">
+<form action="" id="FRegUsuario">
 <div class="modal-header bg-primary">
               <h4 class="modal-title">Registro nuevo usuario</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">

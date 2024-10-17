@@ -3,7 +3,7 @@
    class Conexion{
 
     static public function conectar(){
-        $host="localhost:3307";
+        $host="localhost";
         $db="pos";
         $userDB="root";
         $passDB="";

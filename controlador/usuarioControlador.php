@@ -2,7 +2,9 @@
 $ruta=parse_url($_SERVER["REQUEST_URI"]);
 
 if(isset($ruta["query"])){
-    if($ruta["query"]=="ctrRegUsuario"){
+    if($ruta["query"]=="ctrRegUsuario"||
+    $ruta["query"]=="ctrEditUsuario"||
+    $ruta["query"]=="ctrElitUsuario"){
    $metodo=$ruta["query"];
    $usuario=new ControladorUsuario();
    $usuario->$metodo();
@@ -47,5 +49,41 @@ static public function ctrRegUsuario(){
 
     echo $respuesta;
 
+}
+static public function ctrInfoUsuario($id){
+    $respuesta=ModeloUsuario::mdlInfoUsuario($id);
+    return $respuesta;
+}
+static public function ctrEditUsuario(){
+
+    require "../modelo/usuarioModelo.php";
+
+if($_POST["password"]==$_POST["passActual"]){
+    $password=$_POST["password"];
+}
+else{
+    $password=password_hash($_POST["password"], PASSWORD_DEFAULT);
+
+}
+
+  
+    $data=array(
+    "password"=>$password,
+    "id"=>$_POST["idUsuario"],
+    "perfil"=>$_POST["perfil"],
+    "estado"=>$_POST["estado"]
+    );
+    ModeloUsuario::mdlEditUsuario($data);
+   $respuesta=ModeloUsuario::mdlEditUsuario($data);
+
+   echo $respuesta;
+}
+static function ctrEliUsuario(){
+    require "../modelo/usuarioModelo.php";
+
+$id=$_POST["id"];
+
+$respuesta=ModeloUsuario::mdlEliUsuario($id);
+echo $respuesta;
 }
 }

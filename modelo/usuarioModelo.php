@@ -38,4 +38,53 @@ class ModeloUsuario{
       $stmt->close();
       $stmt->null();
     }
+    static public function mdlActualizarAcceso($fechaHora, $id){
+
+      $stmt=Conexion::conectar()->prepare("update usuario set ultimo_login='$fechaHora' where id_usuario='$id'");
+
+      if($stmt->execute()){
+        return "ok";
+      }else{
+        return "error";
+      }
+      $stmt->close();
+      $stmt->null();  
+    }
+    static public function mdlInfoUsuario($id){
+      $stmt=Conexion::conectar()->prepare("select * from usuario where id_usuario=$id");
+      $stmt->execute();
+
+      return $stmt->fetchAll();
+
+      $stmt->close();
+      $stmt->null;
+    }
+    static public function mdlEditUsuario($data){
+      $password=$data["password"];
+      $perfil=$data["perfil"];
+      $estado=$data["estado"];
+      $id=$data["id"];
+
+      $stmt=Conexion::conectar()->prepare("update usuario set password='$password', perfil='$perfil', estado='$estado' where id_usuario=$id");
+
+      if($stmt->execute()){
+        return "ok";
+      }else{
+        return "error";
+      }
+      $stmt->close();
+      $stmt->null();
+    }
+    static public function mdlEliUsuario($id){
+      $stmt=Conexion::conectar()->prepare("delete form usuario where id_usuario=$id");
+
+      if($stmt->execute()){
+        return "ok";
+      }else{
+        return "error";
+      }
+      $stmt->close();
+      $stmt->null();
+    }
+    
 }
