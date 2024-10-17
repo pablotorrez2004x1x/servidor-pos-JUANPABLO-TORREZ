@@ -54,12 +54,13 @@ class ModeloUsuario{
       $stmt=Conexion::conectar()->prepare("select * from usuario where id_usuario=$id");
       $stmt->execute();
 
-      return $stmt->fetchAll();
+      return $stmt->fetch();
 
       $stmt->close();
       $stmt->null;
     }
     static public function mdlEditUsuario($data){
+
       $password=$data["password"];
       $perfil=$data["perfil"];
       $estado=$data["estado"];
@@ -76,7 +77,7 @@ class ModeloUsuario{
       $stmt->null();
     }
     static public function mdlEliUsuario($id){
-      $stmt=Conexion::conectar()->prepare("delete form usuario where id_usuario=$id");
+      $stmt=Conexion::conectar()->prepare("delete from usuario where id_usuario=$id");
 
       if($stmt->execute()){
         return "ok";

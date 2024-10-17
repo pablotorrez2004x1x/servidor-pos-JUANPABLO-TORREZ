@@ -28,7 +28,7 @@ function regUsuario(){
         processData:false,
         success:function(data){
 
- console.log(data)
+
  
            if(data="ok"){
 
@@ -131,7 +131,7 @@ Swal.fire({
     if(result.isConfirmed){
         $.ajax({
         type:"POST",
-        url:"controlador/usuarioControlador.php?ictrEliUsuario",
+        url:"controlador/usuarioControlador.php?ctrEliUsuario",
         data:obj,
         success:function(data){
 

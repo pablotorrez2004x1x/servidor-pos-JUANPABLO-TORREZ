@@ -41,14 +41,14 @@ $usuario=ControladorUsuario::ctrInfoUsuario($id);
                     <div class="row">
                         <div class="col-sm-6">
                         <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" id="EstadoActivo" name="estado" <?php if($usuario["estado"]=="1"):?>checked<?php endif;?> value="1">
-                          <label for="EstadoActivo" class="custom-control-label">Activo</label>
+                          <input class="custom-control-input" type="radio" id="estadoActivo" name="estado" <?php if($usuario["estado"]=="1"):?>checked<?php endif;?> value="1">
+                          <label for="estadoActivo" class="custom-control-label">Activo</label>
                         </div>
                         </div>
                         <div class="col-sm-6">
                         <div class="custom-control custom-radio">
-                          <input class="custom-control-input" type="radio" id="EstadoInactivo" name="estado" <?php if($usuario["estado"]=="0"):?>checked<?php endif;?> value="0">
-                          <label for="EstadoInactivo" class="custom-control-label">Inactivo</label>
+                          <input class="custom-control-input" type="radio" id="estadoInactivo" name="estado" <?php if($usuario["estado"]=="0"):?>checked<?php endif;?> value="0">
+                          <label for="estadoInactivo" class="custom-control-label">Inactivo</label>
                            </div>
                         </div>
                     </div>       
