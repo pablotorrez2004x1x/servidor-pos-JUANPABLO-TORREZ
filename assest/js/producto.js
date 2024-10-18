@@ -1,10 +1,10 @@
-function MNuevoUsuario(){
+function MNuevoProducto(){
     $("#modal-default").modal("show")
 
     var obj=""
     $.ajax({
         type:"POST",
-        url:"vista/usuario/FNuevoUsuario.php",
+        url:"vista/producto/FNuevoProducto.php",
         data:obj,
         success:function(data){
             $("#content-default").html(data)
@@ -13,15 +13,15 @@ function MNuevoUsuario(){
 
 }
 
-function regUsuario(){
+function regProducto(){
 
-    var formData=new FormData($("#FRegUsuario")[0])
+    var formData=new FormData($("#FRegProducto")[0])
 
     if(formData.get("password")==formData.get("vrPassword")){
 
         $.ajax({
         type:"POST",
-        url:"controlador/usuarioControlador.php?ctrRegUsuario",
+        url:"controlador/productoControlador.php?ctrRegProducto",
         data:formData,
         cache:false,
         contentType:false,
@@ -35,7 +35,7 @@ function regUsuario(){
                 Swal.fire({
                     icon: 'success',
                     showConfirmButton: false,
-                    title: 'El usuario ha sido registrado',
+                    title: 'El producto ha sido registrado',
                     timer: 1000
                 })
 
@@ -57,14 +57,14 @@ function regUsuario(){
     }
 }
 
-function MEditUsuario(id){
+function MEditProducto(id){
 
     $("#modal-default").modal("show")
 
     var obj=""
     $.ajax({
         type:"POST",
-        url:"vista/usuario/FEditUsuario.php?id="+id,
+        url:"vista/producto/FEditProducto.php?id="+id,
         data:obj,
         success:function(data){
             $("#content-default").html(data)
@@ -72,15 +72,15 @@ function MEditUsuario(id){
     })
 }
 
-function editUsuario(){
+function editProducto(){
 
-    var formData=new FormData($("#FEditUsuario")[0])
+    var formData=new FormData($("#FEditProducto")[0])
 
     if(formData.get("password")==formData.get("vrPassword")){
 
         $.ajax({
         type:"POST",
-        url:"controlador/usuarioControlador.php?ctrEditUsuario",
+        url:"controlador/productoControlador.php?ctrEditProducto",
         data:formData,
         cache:false,
         contentType:false,
@@ -93,7 +93,7 @@ function editUsuario(){
                 Swal.fire({
                     icon: 'success',
                     showConfirmButton: false,
-                    title: 'El usuario ha sido actualizado',
+                    title: 'El producto ha sido actualizado',
                     timer: 1000
                 })
 
@@ -114,14 +114,14 @@ function editUsuario(){
         })
     }
 }
-function MEliUsuario(id){
+function MEliProducto(id){
 var obj={
     id:id
 
 }
 
 Swal.fire({
-    title:"estas seguro de eliminar este usuario?",
+    title:"estas seguro de eliminar este producto?",
     showDenyButton:true,
     showCancelButton:false,
     confirmButtonText:'Confirmar',
@@ -131,7 +131,7 @@ Swal.fire({
     if(result.isConfirmed){
         $.ajax({
         type:"POST",
-        url:"controlador/usuarioControlador.php?ctrEliUsuario",
+        url:"controlador/productoControlador.php?ctrEliProducto",
         data:obj,
         success:function(data){
 
@@ -142,7 +142,7 @@ location.reload()
                     icon: 'error',
                     showConfirmButton: false,
                     title: 'Error',
-                    text: 'El usuario no puede ser eliminado',
+                    text: 'El producto no puede ser eliminado',
                     timer: 1000
                 })
             }
@@ -150,4 +150,63 @@ location.reload()
     })
 }
 })
+} 
+function previsualizar(){
+    let imagen=document.getElementById("imgProducto").files[0]
+
+    if(imagen["type"]!="image/png" && imagen["type"]!="image/jpeg"){
+
+        $("·imgProducto").val("")
+
+        Swal.fire({
+            icon: 'error',
+            showConfirmButton: false,
+            title: 'El archivo no es JPG o PNG',
+        })
+
+    }else if(imagen["size"]>10000000){
+        $("·imgProducto").val("")
+
+        Swal.fire({
+            icon: 'error',
+            showConfirmButton: false,
+            title: 'El archivo no puede ser mayor a 10MB',
+        })
+
+    }else{
+        let datosImagen= new FileReader
+        datosImagen.readAsDataURL(imagen)
+
+        $(datosImagen).on("load", function(event){
+            let rutaImagen=event.target.result
+            $(".previsualizar").attr("src", rutaImagen)
+        })
+    }
+}
+function SinCatalogo(){
+
+    var obj={
+        codigoAmbiente: 2,
+        codigoPuntoVenta: 0,
+        codigoPuntoVentaSpecified: true,
+        codigoSistema:"775FA42BE90F7B78EF98F57",
+        codigoSucursal:0, 
+        cuis:"9272DC05",
+        nit: 338794023
+    }
+    $.ajax({
+        type:"POST",
+        url:"http://localhost:5000/Sincronizacion/listaproductosservicios?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTdXBlcmppY2hvMzMiLCJjb2RpZ29TaXN0ZW1hIjoiNzc1RkE0MkJFOTBGN0I3OEVGOThGNTciLCJuaXQiOiJINHNJQUFBQUFBQUFBRE0ydGpDM05ERXdNZ1lBOFFXMzNRa0FBQUE9IiwiaWQiOjYxODYwOCwiZXhwIjoxNzMzOTYxNjAwLCJpYXQiOjE3MDI0OTc2NjAsIm5pdERlbGVnYWRvIjozMzg3OTQwMjMsInN1YnNpc3RlbWEiOiJTRkUifQ.4K_pQUXnIhgI5ymmXoyL43i0pSk3uKCgLMkmQeyl67h7j55GSRsH120AD44pR0aQ1UX_FNYzWQBYrX6pWLd-1w",
+        data:JSON.stringify(obj),
+        cache:false,
+        contentType:"application/json",
+        success:function(data){
+
+            for(var i=0;i<data["listaCodigos"].length; i++){
+
+                $("#CatProductos").append("<tr><td>"+data["listaCodigos"][i]["codigoActividad"]+"</td><td>"+data["listaCodigos"][i]["codigoProducto"]+"</td><td>"+data["listaCodigos"][i]["descripcionProducto"]+"</td><td></td></tr>")
+            }
+
+        }
+    })
 }
