@@ -231,3 +231,16 @@ function unidadesMedida(){
         }
         })
 }
+function MVerProducto(id){
+    $("#modal-default").modal("show")
+
+    var obj=""
+    $.ajax({
+        type:"POST",
+        url:"vista/producto/MVerProducto.php?id="+id,
+        data:obj,
+        success:function(data){
+            $("#content-default").html(data)
+        }
+    })
+}

@@ -5,15 +5,6 @@ class ModeloProducto{
 
 //acceso al sistema
 
-    static public function mdlAccesoProducto($producto){
-      $stmt=Conexion::conectar()->prepare("select * from producto where login_producto='$producto'");
-      $stmt->execute();
-
-      return $stmt->fetch();
-
-      $stmt->close();
-      $stmt->null;
-    }
     static public function mdlInfoProductos(){
       $stmt=Conexion::conectar()->prepare("select * from producto");
       $stmt->execute();
@@ -24,11 +15,15 @@ class ModeloProducto{
       $stmt->null;
 }
     static public function mdlRegProducto($data){
-      $loginProducto=$data["loginProducto"];
-      $password=$data["password"];
-      $perfil=$data["perfil"];
+      $codProducto=$data["codProducto"];
+      $codProductoSIN=$data["codProductoSIN"];
+      $desProducto=$data["desProducto"];
+      $preProducto=$data["preProducto"];
+      $unidadMedidad=$data["unidadMedidad"];
+      $unidadMedidadSIN=$data["unidadMedidadSIN"];
+      $imgProducto=$data["imgNombre"];
 
-      $stmt=Conexion::conectar()->prepare("insert into producto(login_producto, password, perfil) values('$loginProducto', '$password', '$perfil')");
+      $stmt=Conexion::conectar()->prepare("insert into producto(cod_producto, cod_producto_sin, nombre_producto, precio_producto, unidad_medida, unidad_medida_sin, imagen_producto) values('$cod_producto', '$cod_producto_sin', '$nombre_producto', '$precio_producto', '$unidad_medida', '$unidad_medida_sin', '$imagen_producto')");
 
       if($stmt->execute()){
         return "ok";

@@ -6,9 +6,6 @@
       <div class="container-fluid">
       </div><!-- /.container-fluid -->
     </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
          <!-- /.card -->
@@ -42,7 +39,21 @@
                 <td><?php echo $value["cod_producto"];?></td>
                 <td><?php echo $value["nombre_producto"];?></td>
                 <td><?php echo $value["precio_producto"];?></td>
-                <td><?php echo $value["imagen_producto"];?></td>
+                <td><?php 
+                if($value["imagen_producto"]==""){
+                  ?>
+             <img src="assest/dist/img/product_default.png" alt="" width="50" class="img-thumbnail">
+
+                  <?php
+                }else{
+                  ?>
+
+                  <img src="assest/dist/img/productos/<?php echo $value["imagen_producto"];?>" alt="" width="50" class="img-thumbnail">
+                  <?php
+
+                }
+                
+               ?></td>
 
                 <td><?php 
                 if($value["disponible"]==1){
@@ -57,7 +68,10 @@
                 ?> </td>    
                 <td>
                     <div class="btn-group">
-                 <button class="btn btn-secondary" onclick="MEditProducto(<?php echo $value["id_producto"];?>)">
+                 <button class="btn btn-info" onclick="MVERProducto(<?php echo $value["id_producto"];?>)">
+                    <i class="fas fa-eye"></i>
+                 </button>
+                 <button class="btn btn-secondary" onclick="MVERProducto(<?php echo $value["id_producto"];?>)">
                     <i class="fas fa-edit"></i>
                  </button>
                  <button class="btn btn-danger" onclick="MEliProducto(<?php echo $value["id_producto"];?>)">

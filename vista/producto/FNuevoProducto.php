@@ -94,7 +94,7 @@ $(function () {
   $('#FRegProducto').validate({
     rules: {
       codProducto: {
-        codProducto: true,
+        required: true,
         minlength: 3,
       },
       codProductoSIN: {

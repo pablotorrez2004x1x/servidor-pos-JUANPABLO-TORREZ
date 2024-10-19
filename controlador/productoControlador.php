@@ -20,8 +20,12 @@ static public function ctrInfoProductos(){
 static public function ctrRegProducto(){
      require "../modelo/productoModelo.php";
 
+       $imagen=$_FILES["imgProducto"];
+       $imgNombre=$imagen["name"];
+       $imgTmp=$imagen["tmp_name"];
 
-     
+       move_upload_file($imgTmp,"..//assest/img/productos/".$imgNombre);
+
      $data=array(
         "codProducto"=>$_POST["codProducto"],
         "codProductoSIN"=>$_POST["codProductoSIN"],
@@ -29,7 +33,8 @@ static public function ctrRegProducto(){
         "preProducto"=>$_POST["preProducto"],
         "unidadMedidad"=>$_POST["unidadMedidad"],
         "unidadMedidadSIN"=>$_POST["unidadMedidadSIN"],
-        "codProducto"=>$_POST["codProducto"],
+        "imgProducto"=>$imgNombre,
+
      );
     $respuesta=ModeloProducto::mdlRegProducto($data);
 
