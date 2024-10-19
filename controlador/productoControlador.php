@@ -20,12 +20,16 @@ static public function ctrInfoProductos(){
 static public function ctrRegProducto(){
      require "../modelo/productoModelo.php";
 
-     $password=password_hash($_POST["password"], PASSWORD_DEFAULT);
 
+     
      $data=array(
-     "loginProducto"=>$_POST["login"],
-     "password"=>$password,
-     "perfil"=>"Moderador"
+        "codProducto"=>$_POST["codProducto"],
+        "codProductoSIN"=>$_POST["codProductoSIN"],
+        "desProducto"=>$_POST["desProducto"],
+        "preProducto"=>$_POST["preProducto"],
+        "unidadMedidad"=>$_POST["unidadMedidad"],
+        "unidadMedidadSIN"=>$_POST["unidadMedidadSIN"],
+        "codProducto"=>$_POST["codProducto"],
      );
     $respuesta=ModeloProducto::mdlRegProducto($data);
 
