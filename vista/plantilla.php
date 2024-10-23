@@ -23,12 +23,14 @@
 
 <?php
 
+
 if(isset($_GET["ruta"])){
 
   if($_GET["ruta"]=="inicio"||
      $_GET["ruta"]=="VCliente"||
      $_GET["ruta"]=="VProducto"||
      $_GET["ruta"]=="SinCatalogos"||
+     $_GET["ruta"]=="FormVenta"||
      $_GET["ruta"]=="salir"|| 
     $_GET["ruta"]=="VUsuario"){
     include "asideMenu.php";
@@ -38,9 +40,11 @@ if(isset($_GET["ruta"])){
     include "footer.php";
 }
 }
+
 else{
   include "vista/login.php";
 }
+
 ?>
 
 </html>
