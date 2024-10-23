@@ -4,6 +4,7 @@ $ruta=parse_url($_SERVER["REQUEST_URI"]);
 if(isset($ruta["query"])){
     if($ruta["query"]=="ctrRegCliente"||
     $ruta["query"]=="ctrEditCliente"||
+    $ruta["query"]=="ctrBusCliente"||
     $ruta["query"]=="ctrEliCliente"){
    $metodo=$ruta["query"];
    $cliente=new ControladorCliente();
@@ -24,9 +25,12 @@ static public function ctrRegCliente(){
      $password=password_hash($_POST["password"], PASSWORD_DEFAULT);
 
      $data=array(
-     "loginCliente"=>$_POST["login"],
-     "password"=>$password,
-     "perfil"=>"Moderador"
+     "rsCliente"=>$_POST["rsCliente"],
+     "nitCI"=>$_POST["nitCI"],
+     "nomCliente"=>$_POST["nomCliente"],
+     "dirCliente"=>$_POST["dirCliente"],
+     "telCliente"=>$_POST["telCliente"],
+     "emailCliente"=>$_POST["emailCliente"]
      );
     $respuesta=ModeloCliente::mdlRegCliente($data);
 
@@ -39,7 +43,7 @@ static public function ctrInfoCliente($id){
 }
 static public function ctrEditCliente(){
 
-    require "../modelo/clienteModelo.php";
+    require "../modelo/ClienteModelo.php";
 
 if($_POST["password"]==$_POST["passActual"]){
     $password=$_POST["password"];
@@ -62,11 +66,18 @@ else{
    echo $respuesta;
 }
 static function ctrEliCliente(){
-    require "../modelo/clienteModelo.php";
+    require "../modelo/ClienteModelo.php";
 
 $id=$_POST["id"];
 
 $respuesta=ModeloCliente::mdlEliCliente($id);
 echo $respuesta;
 }
+static function ctrBusCliente(){
+    require "../modelo/ClienteModelo.php";
+  $nitCliente=$_POST[!"nitCliente"];
+
+  $respuesta=ModeloCliente::mdlBusCliente($nitCliente);
+echo $respuesta;
+} 
 }

@@ -29,3 +29,21 @@ function verificarComunicacion(){
 }
 
 setInterval(verificarComunicacion,3000)
+
+function busCliente(){
+let nitCliente=document.getElementById("nitCliente").value
+
+var obj={
+    nitCliente:nitCliente
+}
+
+$.ajax({
+    type:"POST",
+    url:"controlador/clienteControlador.php?ctrBusCliente",
+    data:obj,
+    dataType:"json",
+    success:function(){
+console.log(data)
+    }
+})
+}

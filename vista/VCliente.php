@@ -23,11 +23,11 @@
                   <thead>
                   <tr>
                     <th>#</th>
-                    <th>Login</th>
-                    <th>Perfil</th>
-                    <th>Estado</th>
-                    <th>Ultimo acceso</th>
-                    <th>Fecha de registro</th>
+                    <th>Razon Social</th>
+                    <th>nit/CI</th>
+                    <th>Direccion</th>
+                    <th>Nombre</th>
+                    <th>Contactos</th>
                     <td>
                     <button class="btn btn-primary" onclick="MNuevoCliente()">Nuevo</button>
                 </td>
@@ -41,8 +41,11 @@
 
             <tr>
                 <td><?php echo $value["id_cliente"];?></td>
-                <td><?php echo $value["login_cliente"];?></td>
-                <td><?php echo $value["perfil"];?></td>
+                <td><?php echo $value["razon_social_cliente"];?></td>
+                <td><?php echo $value["nit_ci_cliente"];?></td>
+                <td><?php echo $value["rdireccion_cliente"];?></td>
+                <td><?php echo $value["nombre_cliente"];?></td>
+                <td><?php echo $value["telefono_cliente"]."-".$value["email_cliente"];?></td>
 
                 <td><?php 
                 if($value["estado"]==1){

@@ -21,7 +21,7 @@ class ModeloProducto{
       $preProducto=$data["preProducto"];
       $unidadMedidad=$data["unidadMedidad"];
       $unidadMedidadSIN=$data["unidadMedidadSIN"];
-      $imgProducto=$data["imgNombre"];
+      $imgProducto=$data["imgProducto"];
 
       $stmt=Conexion::conectar()->prepare("insert into producto(cod_producto, cod_producto_sin, nombre_producto, precio_producto, unidad_medida, unidad_medida_sin, imagen_producto) values('$cod_producto', '$cod_producto_sin', '$nombre_producto', '$precio_producto', '$unidad_medida', '$unidad_medida_sin', '$imagen_producto')");
 
@@ -86,5 +86,5 @@ class ModeloProducto{
       $stmt->close();
       $stmt->null();
     }
-    
+   
 }

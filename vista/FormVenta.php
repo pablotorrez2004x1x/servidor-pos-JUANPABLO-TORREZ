@@ -41,14 +41,25 @@
                     </select>
                 </div>
                 <div class="form-group col-md-3">
+                    <label for="">NIT/CI</label>
                    <div class="input-group">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" list="listaClientes" name="nitCliente" id="nitCliente">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">
+                        <button class="btn btn-outline-secondary" type="button" onclick="busCliente()">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
                    </div>
+                   <datalist id="listaClientes">
+                    <?php
+                    $cliente=ControladorCliente::ctrInfoClientes();
+                    foreach($cliente as $value){
+                        ?>
+                        <option value="<?php echo $value["nit_ci_cliente"];?>"><?php echo $value["razon_social_clientes"];?></option>
+                        <?php
+                    }
+                    ?>
+                    </datalist>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="">E-mail</label>
@@ -59,7 +70,7 @@
                     <input type="text" class="form-control" name="rsCliente" id="rsCliente">
                 </div>
             </div>
-            <div class="form-group col-md-3">
+            <div class="form-group row col-md-3">
               <div class="card">
                  <div class="input-group sm-3">
                     <div class="input-group-prepend">
@@ -139,13 +150,13 @@
                     </div>
                 </div>
                 <div class="form-group col-md-1">
-                    <label for="">U. medida</label>
+                    <label for="">U.medida</label>
                     <div class="input-group form-group">
                         <input type="text" class="form-control" name="uniMedidad" id="uniMedidad">
                     </div>
                 </div>
                 <div class="form-group col-md-1">
-                    <label for="">P. unitario</label>
+                    <label for="">P.unitario</label>
                     <div class="input-group form-group">
                         <input type="text" class="form-control" name="preUnitario" id="preUnitario">
                     </div>
@@ -157,7 +168,7 @@
                     </div>
                 </div>
                 <div class="form-group col-md-1">
-                    <label for="">P. total</label>
+                    <label for="">P.total</label>
                     <div class="input-group form-group">
                         <input type="text" class="form-control" name="preTotal" id="preTotal">
                     </div>

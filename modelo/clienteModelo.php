@@ -16,11 +16,14 @@ class ModeloCliente{
       $stmt->null;
 }
     static public function mdlRegCliente($data){
-      $loginCliente=$data["loginCliente"];
-      $password=$data["password"];
-      $perfil=$data["perfil"];
+      $rsCliente=$data["rsCliente"];
+      $nitCI=$data["nitCI"];
+      $nomCliente=$data["nomCliente"];
+      $dirCliente=$data["dirCliente"];
+      $telCliente=$data["telCliente"];
+      $emailCliente=$data["emailCliente"];
 
-      $stmt=Conexion::conectar()->prepare("insert into cliente(login_cliente, password, perfil) values('$loginCliente', '$password', '$perfil')");
+      $stmt=Conexion::conectar()->prepare("insert into cliente(razon_social_cliente, nit_ci_cliente, direccion_cliente, nombre_cliente, telefono_cliente, email_cliente) values('$rsCliente', '$nitCI', '$perfil', '$nomCliente', '$telCliente', '$emailCliente')", );
 
       if($stmt->execute()){
         return "ok";
@@ -51,6 +54,16 @@ class ModeloCliente{
       $stmt->close();
       $stmt->null;
     }
+    static public function BusCliente($nitCliente){
+      $stmt=Conexion::conectar()->prepare("select * from cliente where id_cliente=$id");
+      $stmt->execute();
+
+      return $stmt->fetch();
+
+      $stmt->close();
+      $stmt->null;
+    }
+
     static public function mdlEditCliente($data){
 
       $password=$data["password"];
