@@ -57,7 +57,7 @@ function regProducto(){
 
 function MEditProducto(id){
 
-    $("#modal-default").modal("show")
+    $("#modal-lg").modal("show")
 
     var obj=""
     $.ajax({
@@ -65,7 +65,7 @@ function MEditProducto(id){
         url:"vista/producto/FEditProducto.php?id="+id,
         data:obj,
         success:function(data){
-            $("#content-default").html(data)
+            $("#content-lg").html(data)
         }
     })
 }
@@ -74,7 +74,6 @@ function editProducto(){
 
     var formData=new FormData($("#FEditProducto")[0])
 
-    if(formData.get("password")==formData.get("vrPassword")){
 
         $.ajax({
         type:"POST",
@@ -110,7 +109,7 @@ function editProducto(){
              }
    
         })
-    }
+    
 }
 function MEliProducto(id){
 var obj={
@@ -221,7 +220,7 @@ function unidadesMedida(){
     }
     $.ajax({
         type:"POST",
-        url:"http://localhost:5000/Sincronizacion/listaproductosservicios?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTdXBlcmppY2hvMzMiLCJjb2RpZ29TaXN0ZW1hIjoiNzc1RkE0MkJFOTBGN0I3OEVGOThGNTciLCJuaXQiOiJINHNJQUFBQUFBQUFBRE0ydGpDM05ERXdNZ1lBOFFXMzNRa0FBQUE9IiwiaWQiOjYxODYwOCwiZXhwIjoxNzMzOTYxNjAwLCJpYXQiOjE3MDI0OTc2NjAsIm5pdERlbGVnYWRvIjozMzg3OTQwMjMsInN1YnNpc3RlbWEiOiJTRkUifQ.4K_pQUXnIhgI5ymmXoyL43i0pSk3uKCgLMkmQeyl67h7j55GSRsH120AD44pR0aQ1UX_FNYzWQBYrX6pWLd-1w",
+        url:"http://localhost:5000/Sincronizacion/unidadmedida?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTdXBlcmppY2hvMzMiLCJjb2RpZ29TaXN0ZW1hIjoiNzc1RkE0MkJFOTBGN0I3OEVGOThGNTciLCJuaXQiOiJINHNJQUFBQUFBQUFBRE0ydGpDM05ERXdNZ1lBOFFXMzNRa0FBQUE9IiwiaWQiOjYxODYwOCwiZXhwIjoxNzMzOTYxNjAwLCJpYXQiOjE3MDI0OTc2NjAsIm5pdERlbGVnYWRvIjozMzg3OTQwMjMsInN1YnNpc3RlbWEiOiJTRkUifQ.4K_pQUXnIhgI5ymmXoyL43i0pSk3uKCgLMkmQeyl67h7j55GSRsH120AD44pR0aQ1UX_FNYzWQBYrX6pWLd-1w",
         data:JSON.stringify(obj),
         cache:false,
         contentType:"application/json",
@@ -232,7 +231,7 @@ function unidadesMedida(){
         })
 }
 function MVerProducto(id){
-    $("#modal-default").modal("show")
+    $("#modal-lg").modal("show")
 
     var obj=""
     $.ajax({

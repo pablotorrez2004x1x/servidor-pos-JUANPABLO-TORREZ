@@ -49,22 +49,26 @@ static public function ctrEditProducto(){
 
     require "../modelo/productoModelo.php";
 
-if($_POST["password"]==$_POST["passActual"]){
-    $password=$_POST["password"];
-}
-else{
-    $password=password_hash($_POST["password"], PASSWORD_DEFAULT);
+    $imagen=$_FILES["imgProducto"];
+    if($imagen["name"]==""){
+       $imgNombre=$_POST["imgActual"];
+    }else{
+        $imgNombre=$imagen["name"];
+        $imgTmp=$imagen["tmp_name"];
+        move_upload_file($imgTmp,"..//assest/img/productos/".$imgNombre);
 
-}
-
+    }
+  $data=array(
+     "idProducto"=>$_POST["idProducto"],
+     "codProductoSIN"=>$_POST["codProductoSIN"],
+     "desProducto"=>$_POST["desProducto"],
+     "preProducto"=>$_POST["preProducto"],
+     "unidadMedidad"=>$_POST["unidadMedidad"],
+     "unidadMedidadSIN"=>$_POST["unidadMedidadSIN"],
+     "estado"=>$_POST["estado"],
+     "imgProducto"=>$imgNombre,
+  );
   
-    $data=array(
-    "password"=>$password,
-    "id"=>$_POST["idproducto"],
-    "perfil"=>$_POST["perfil"],
-    "estado"=>$_POST["estado"]
-    );
-    ModeloProducto::mdlEditProducto($data);
    $respuesta=ModeloProducto::mdlEditProducto($data);
 
    echo $respuesta;

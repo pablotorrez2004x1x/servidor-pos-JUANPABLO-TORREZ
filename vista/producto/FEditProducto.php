@@ -1,22 +1,34 @@
-<form action="" id="FRegProducto" enctype="multipart/form-data">
-<div class="modal-header bg-primary">
-              <h4 class="modal-title">Registro nuevo producto</h4>
+
+<?php
+require_once "../../controlador/productoControlador.php";
+require_once "../../modelo/productoModelo.php";
+
+$id=$_GET["id"];
+
+$producto=ControladorProducto::ctrInfoProducto($id);
+
+?>
+<form action="" id="FEditProducto" enctype="multipart/form-data">
+<div class="modal-header bg-secondary">
+              <h4 class="modal-title">Editar producto</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+
             <div class="modal-body">
               <div class="row">
                <div class="col-sm-6">
                 <div class="form-group">
                     <label for="">Cod. Producto</label>
-                    <input type="text" class="form-control" name="codProducto" id="codProducto">
+                    <input type="text" class="form-control" name="codProducto" id="codProducto" value="<?php echo $producto["cod_producto"];?>" readonly>
+                    <input type="hidden" name="idProducto" value="<?php echo $producto["id_producto"];?>">
                 </div>
                 </div>
                 <div class="col-sm-6">
                 <div class="form-group">
                     <label for="">Cod. Producto SIN</label>
-                    <input type="text" class="form-control" name="codProductoSIN" id="codProductoSIN">
+                    <input type="text" class="form-control" name="codProductoSIN" id="codProductoSIN" value="<?php echo $producto["cod_producto_sin"];?>">
                   </div>
               </div>
             </div>
@@ -25,14 +37,14 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label for="">Descripcion</label>
-                    <input type="text" class="form-control" name="desProducto" id="desProducto">
+                    <input type="text" class="form-control" name="desProducto" id="desProducto" value="<?php echo $producto["nombre_producto"];?>">
                   </div>
               </div>
 
               <div class="col-sm-6">
                 <div class="form-group">
                     <label for="">Precio</label>
-                    <input type="text" class="form-control" name="preProducto" id="preProducto">
+                    <input type="text" class="form-control" name="preProducto" id="preProducto" value="<?php echo $producto["precio_producto"];?>">
                   </div>
               </div>
            </div>
@@ -41,14 +53,14 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label for="">Unidad de medida</label>
-                    <input type="text" class="form-control" name="unidadMedidad" id="unidadMedidad">
+                    <input type="text" class="form-control" name="unidadMedidad" id="unidadMedidad" value="<?php echo $producto["unidad_medida"];?>">
                   </div>
               </div>
 
               <div class="col-sm-6">
                 <div class="form-group">
                     <label for="">Unidad de medida SIN</label>
-                    <input type="text" class="form-control" name="unidadMedidadSIN" id="unidadMedidadSIN">
+                    <input type="text" class="form-control" name="unidadMedidadSIN" id="unidadMedidadSIN" value="<?php echo $producto["unidad_medida_sin"];?>">
                   </div>
                 </div>
               </div>
@@ -56,21 +68,51 @@
               <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
-                    <label>Imagen <span class="text-muted">(Peso maximo 10MB - JPG,PNG)</span></label>
+                    <label>Imagen <span class="text-muted">(Peso maximo 10MB - JPG,PNG)</span> </label>
                     <div class="input-group">
                     <div class="custom-file">
                     <input type="file" class="custom-file-input" id="imgProducto" name="imgProducto" onchange="previsualizar()">
+                    <input type="hidden" name="imgActual" value="<?php echo $producto["imagen_producto"];?>">
                     <label class="custom-file-label" for="imgProducto">Elegir Archivo</label>
                   </div>
                   <div class="input-group-append">
                     <span class="input-group-text">Subir</span>
                   </div>
               </div>
+              <div class="form-group">
+                <label for="">Estado</label>
+               <div class="row">
+             <div class="col-sm-6">
+                <div class="custom-control custom-radio">
+                    <input type="radio" id="estadoActivo" name="estado" value="1" <?php if($producto["disponible"]=="1"); ?>checked<?php endif;?>>
+                    <label for="estadoActivo">Disponible</label>
+                </div>
+             </div>
+             <div class="col-sm-6">
+             <div class="custom-control custom-radio">
+                    <input type="radio" id="estadoInactivo" name="estado" value="0" <?php if($producto["disponible"]=="0");?>checked <?php endif;?>>
+                    <label for="estadoInactivo">NO Disponible</label>
+                </div>
+               </div>
+              </div>
            </div>
         </div>  
+        </div> 
         <div class="col-sm-6">
                 <div class="form-group" style="text-align:center">
-                <img src="assest/dist/img/product_default.png" alt="" width="150" class="img-thumbnail previsualizar">
+                <?php
+                if($producto["imagen_producto"]==""){
+                    ?>
+      <img src="assest/dist/img/product_default.png" alt="" width="150" class="img-thumbnail previsualizar">
+
+                     <?php
+                }else{
+                    ?>      
+                    <img src="assest/dist/img/productos/<?php echo $producto["imagen_producto"];?>" alt="" width="150" class="img-thumbnail previsualizar">
+
+            <?php
+                }
+                ?>
                 </div>
            </div>
         </div>  
@@ -87,11 +129,11 @@
 $(function () {
   $.validator.setDefaults({
     submitHandler: function () {
-      regProducto()
+      editProducto()
     }
   });
 
-  $('#FRegProducto').validate({
+  $('#FEditProducto').validate({
     rules: {
       codProducto: {
         required: true,

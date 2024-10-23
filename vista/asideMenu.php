@@ -90,7 +90,7 @@
 
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
+              <i class="nav-icon fas fa-boxes"></i>
               <p>
                Productos
                 <i class="right fas fa-angle-left"></i>
@@ -117,7 +117,7 @@
 
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
+              <i class="nav-icon fas fa-cash-register"></i>
               <p>
                Ventas
                 <i class="right fas fa-angle-left"></i>
