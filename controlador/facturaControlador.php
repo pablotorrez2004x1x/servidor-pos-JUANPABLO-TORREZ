@@ -36,30 +36,6 @@ static public function ctrInfoFactura($id){
     $respuesta=ModeloFactura::mdlInfoFactura($id);
     return $respuesta;
 }
-static public function ctrEditFactura(){
-
-    require "../modelo/FacturaModelo.php";
-
-if($_POST["password"]==$_POST["passActual"]){
-    $password=$_POST["password"];
-}
-else{
-    $password=password_hash($_POST["password"], PASSWORD_DEFAULT);
-
-}
-
-  
-    $data=array(
-    "password"=>$password,
-    "id"=>$_POST["idFactura"],
-    "perfil"=>$_POST["perfil"],
-    "estado"=>$_POST["estado"]
-    );
-    ModeloFactura::mdlEditFactura($data);
-   $respuesta=ModeloFactura::mdlEditFactura($data);
-
-   echo $respuesta;
-}
 static function ctrEliFactura(){
     require "../modelo/FacturaModelo.php";
 
@@ -67,5 +43,15 @@ $id=$_POST["id"];
 
 $respuesta=ModeloFactura::mdlEliFactura($id);
 echo $respuesta;
+}
+static function ctrNumFactura(){
+    require "../modelo/FacturaModelo.php";
+    $respuesta=ModeloFactura::mdlNumFactura();
+
+    if($respuesta["max(id_factura)"]==null){
+        echo "1";
+    }else{
+        echo $respuesta["max(id_factura)"]+1;
+    }
 }
 }

@@ -78,6 +78,6 @@ static function ctrBusCliente(){
   $nitCliente=$_POST[!"nitCliente"];
 
   $respuesta=ModeloCliente::mdlBusCliente($nitCliente);
-echo $respuesta;
+echo json_encode($respuesta);
 } 
 }

@@ -28,18 +28,6 @@ class ModeloFactura{
       $stmt->close();
       $stmt->null();
     }
-    static public function mdlActualizarAcceso($fechaHora, $id){
-
-      $stmt=Conexion::conectar()->prepare("update Factura set ultimo_login='$fechaHora' where id_Factura='$id'");
-
-      if($stmt->execute()){
-        return "ok";
-      }else{
-        return "error";
-      }
-      $stmt->close();
-      $stmt->null();  
-    }
     static public function mdlInfoFactura($id){
       $stmt=Conexion::conectar()->prepare("select * from Factura where id_Factura=$id");
       $stmt->execute();
@@ -48,23 +36,6 @@ class ModeloFactura{
 
       $stmt->close();
       $stmt->null;
-    }
-    static public function mdlEditFactura($data){
-
-      $password=$data["password"];
-      $perfil=$data["perfil"];
-      $estado=$data["estado"];
-      $id=$data["id"];
-
-      $stmt=Conexion::conectar()->prepare("update Factura set password='$password', perfil='$perfil', estado='$estado' where id_Factura=$id");
-
-      if($stmt->execute()){
-        return "ok";
-      }else{
-        return "error";
-      }
-      $stmt->close();
-      $stmt->null();
     }
     static public function mdlEliFactura($id){
       $stmt=Conexion::conectar()->prepare("delete from Factura where id_Factura=$id");
@@ -77,5 +48,13 @@ class ModeloFactura{
       $stmt->close();
       $stmt->null();
     }
-    
+    static public function mdlNumFactura(){
+      $stmt=Conexion::conectar()->prepare("select max(id_factura) from factura");
+      $stmt->execute();
+
+      return $stmt->fetch();
+
+      $stmt->close();
+      $stmt->null;
+    }
 }
