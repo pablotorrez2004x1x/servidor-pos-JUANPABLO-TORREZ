@@ -4,6 +4,7 @@ $ruta=parse_url($_SERVER["REQUEST_URI"]);
 if(isset($ruta["query"])){
     if($ruta["query"]=="ctrRegProducto"||
     $ruta["query"]=="ctrEditProducto"||
+    $ruta["query"]=="ctrBusProducto"||
     $ruta["query"]=="ctrEliProducto"){
    $metodo=$ruta["query"];
    $producto=new ControladorProducto();
@@ -24,7 +25,7 @@ static public function ctrRegProducto(){
        $imgNombre=$imagen["name"];
        $imgTmp=$imagen["tmp_name"];
 
-       move_upload_file($imgTmp,"..//assest/img/productos/".$imgNombre);
+       move_upload_file($imgTmp,"../assest/img/productos/".$imgNombre);
 
      $data=array(
         "codProducto"=>$_POST["codProducto"],
@@ -73,12 +74,18 @@ static public function ctrEditProducto(){
 
    echo $respuesta;
 }
-static function ctrEliProducto(){
+static public function ctrEliProducto(){
+    require "../modelo/productoModelo.php";
+    $id=$_POST["id"];
+
+    $respuesta=ModeloProducto::mdlEliProducto($id);
+    echo $respuesta;
+}
+static public function ctrBusProducto(){
     require "../modelo/productoModelo.php";
 
-$id=$_POST["id"];
-
-$respuesta=ModeloProducto::mdlEliProducto($id);
-echo $respuesta;
+    $codProducto=$_POST["codProducto"];
+    $respuesta=ModeloProducto::mdlBusProducto($codProducto);
+    return $respuesta;
 }
 }
