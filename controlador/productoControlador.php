@@ -86,6 +86,6 @@ static public function ctrBusProducto(){
 
     $codProducto=$_POST["codProducto"];
     $respuesta=ModeloProducto::mdlBusProducto($codProducto);
-    return $respuesta;
+    echo json_encode($codProducto);
 }
 }
