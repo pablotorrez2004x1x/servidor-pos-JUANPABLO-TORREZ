@@ -138,6 +138,7 @@ document.getElementById("conceptoPro").value
 document.getElementById("cantProducto").value=0
 document.getElementById("uniMedida").value=""
 
+
 document.getElementById("preUnitario").value=""
 document.getElementById("descProducto").value="0.00"
 document.getElementById("preTotal").value="0.00"
@@ -145,6 +146,7 @@ document.getElementById("preTotal").value="0.00"
 
 function dibujarTablaCarrito(){
 listaDetalle.innerHTML=""
+
 
 arregloCarrito.forEach((detalle)=>{
     let fila=document.createElement("tr")
