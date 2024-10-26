@@ -103,6 +103,7 @@ function calcularPreProd(){
 
 //carrito
 var arregloCarrito=[]
+var listaDetalle=document.getElementById("listaDetalle")
 function agregarCarrito(){
 let actEconomica=document.getElementById("actEconomica").value
 let codProducto=document.getElementById("codProducto").value
@@ -128,8 +129,52 @@ let objDetalle={
 }
 
 arregloCarrito.push(objDetalle)
-
+dibujarTablaCarrito()
 }
+//borrar el formulario carro
+
+document.getElementById("codProducto").value=""
+document.getElementById("conceptoPro").value
+document.getElementById("cantProducto").value=0
+document.getElementById("uniMedida").value=""
+
+document.getElementById("preUnitario").value=""
+document.getElementById("descProducto").value="0.00"
+document.getElementById("preTotal").value="0.00"
+
+
 function dibujarTablaCarrito(){
-    
+listaDetalle.innerHTML=""
+
+arregloCarrito.forEach((detalle)=>{
+    let fila=document.createElement("tr")
+
+    fila.innerHTML='<td>'+detalle.descripcion+'</td>'+
+    '<td>'+detalle.cantidad+'</td>'+
+    '<td>'+detalle.precioUnitario+'</td>'+
+    '<td>'+detalle.montoDescuento+'</td>'+
+    '<td>'+detalle.Subtotal+'</td>'
+
+    let tdEliminar=document.createElement("td")
+    let botonEliminar=document.createElement("button")
+      botonEliminar.classList.add("btn", "btn-danger")
+      botonEliminar.innerText="Eliminar"
+      botonEliminar.onclick=()=>{
+        eliminarCarrito(detalle.codigoProducto)
+      }
+
+      tdEliminar.appendChild(botonEliminar)
+      fila.appendChild(tdEliminar)
+
+      listaDetalle.appendChild(fila)
+
+})
+}
+function eliminarCarrito(){
+    arregloCarrito=agregarCarrito.filter((detalle)=>{
+        if(cod!=detalle.codigoProducto){
+            return detalle
+        }
+    })
+    dibujarTablaCarrito()
 }
