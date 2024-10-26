@@ -171,8 +171,10 @@ arregloCarrito.forEach((detalle)=>{
       listaDetalle.appendChild(fila)
 
 })
+
+calcularTotal()
 }
-function eliminarCarrito(){
+function eliminarCarrito(cod){
     arregloCarrito=agregarCarrito.filter((detalle)=>{
         if(cod!=detalle.codigoProducto){
             return detalle
@@ -180,3 +182,31 @@ function eliminarCarrito(){
     })
     dibujarTablaCarrito()
 }
+
+function calcularTotal(){
+    let totalCarrito=0
+
+    for(var i=0; i<arregloCarrito.length; i++){
+        totalCarrito=totalCarrito+parseFloat(arregloCarrito[i].subtotal)
+    }
+
+    document.getElementById("subTotal").value=totalCarrito
+    let descAdicional=parseFloat(document.getElementById("descAdicional").value)
+    document.getElementById("totApagar").value=totalCarrito-descAdicional
+}
+//emitir factura
+    function emitirFactura(){
+     let date=new Date()
+
+     let numFactura=parseInt(document.getElementById("numFactura").value)
+     let fechaFactura=date.toISOString()
+     let rsCliente=document.getElementById("rsCliente").value
+     let tpDocumento=parseInt(document.getElementById("tpDocumento").value)
+     let nitCliente=document.getElementById("nitCliente").value
+     let metPago=parseInt(document.getElementById("metPago").value)
+     let totApagar=parseFloat(document.getElementById("totApagar").value)
+     let descAdicional=parseFloat(document.getElementById("descAdicional").value)
+     let subTotal=parseFloat(document.getElementById("subTotal").value)
+
+
+    }
