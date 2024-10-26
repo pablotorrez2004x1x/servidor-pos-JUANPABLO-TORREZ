@@ -85,6 +85,9 @@ $.ajax({
         document.getElementById("conceptoPro").value=data["nombre_producto"];
         document.getElementById("uniMedida").value=data["unidad_medida"];
         document.getElementById("preUnitario").value=data["precio_producto"];
+
+        document.getElementById("uniMedidaSin").value=data["unidad_medida_sin"];
+        document.getElementById("codProductoSin").value=data["cod_producto_sin"];
     }
 })
 }
@@ -96,4 +99,37 @@ function calcularPreProd(){
     let preProducto=preUnit-descProducto
 
     document.getElementById("preTotal").value=preProducto*cantPro
+}
+
+//carrito
+var arregloCarrito=[]
+function agregarCarrito(){
+let actEconomica=document.getElementById("actEconomica").value
+let codProducto=document.getElementById("codProducto").value
+let codProductoSin=document.getElementById("codProductoSin").value
+let conceptoPro=document.getElementById("conceptoPro").value
+let cantProducto=document.getElementById("cantProducto").value
+let uniMedida=document.getElementById("uniMedida").value
+let uniMedidaSin=document.getElementById("uniMedidaSin").value
+let preUnitario=document.getElementById("preUnitario").value
+let descProducto=document.getElementById("descProducto").value
+let preTotal=document.getElementById("preTotal").value
+
+let objDetalle={
+    actividadEconomica:actEconomica,
+    codigoProductoSin:codProductoSin,
+    codigoProducto:codProducto,
+    descripcion:conceptoPro,
+    cantidad:cantProducto,
+    unidadMedida:uniMedidaSin,
+    precioUnitario:preUnitario,
+    montoDescuento:descProducto,
+    subtotal:preTotal
+}
+
+arregloCarrito.push(objDetalle)
+
+}
+function dibujarTablaCarrito(){
+    
 }
