@@ -250,6 +250,11 @@ function calcularTotal(){
                 codigoPuntoVenta:0,
                 fechaEmision:fechaFactura,
                 nombreRazonSocial:rsCliente
+                codigoTipoDocumentoIdentidad:tpDocumento,
+                numeroDocumento:nitCliente,
+                complemento:"",
+                codigoCliente:nitCliente,
+                codigoMetodoPago:metPago,
             },
             detalle:{}
         }
