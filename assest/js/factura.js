@@ -249,14 +249,26 @@ function calcularTotal(){
                 direccion:dirEmpresa,
                 codigoPuntoVenta:0,
                 fechaEmision:fechaFactura,
-                nombreRazonSocial:rsCliente
+                nombreRazonSocial:rsCliente,
                 codigoTipoDocumentoIdentidad:tpDocumento,
                 numeroDocumento:nitCliente,
                 complemento:"",
                 codigoCliente:nitCliente,
                 codigoMetodoPago:metPago,
+                numeroTarjeta:null,
+                montoTotal:subTotal,
+                montoTotalSujetoIva:totApagar,
+                montoGiftCard:0,
+                descuentoAdicional:descAdicional,
+                codigoExcepcion:"0",
+                cafc:null,
+                leyenda:"",
+                usuario:usuarioLogin,
+                codigoDocumentoSector:1
             },
-            detalle:{}
+            detalle:{
+
+            }
         }
      }
     }

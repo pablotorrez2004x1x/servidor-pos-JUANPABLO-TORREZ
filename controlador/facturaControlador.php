@@ -4,6 +4,8 @@ $ruta=parse_url($_SERVER["REQUEST_URI"]);
 if(isset($ruta["query"])){
     if($ruta["query"]=="ctrRegFactura"||
     $ruta["query"]=="ctrEditFactura"||
+    $ruta["query"]=="ctrNumtFactura"||
+    $ruta["query"]=="ctrNuevoCufd"||
     $ruta["query"]=="ctrEliFactura"){
    $metodo=$ruta["query"];
    $Factura=new ControladorFactura();
@@ -39,10 +41,10 @@ static public function ctrInfoFactura($id){
 static function ctrEliFactura(){
     require "../modelo/FacturaModelo.php";
 
-$id=$_POST["id"];
+    $id=$_POST["id"];
 
-$respuesta=ModeloFactura::mdlEliFactura($id);
-echo $respuesta;
+    $respuesta=ModeloFactura::mdlEliFactura($id);
+    echo $respuesta;
 }
 static function ctrNumFactura(){
     require "../modelo/FacturaModelo.php";
@@ -53,5 +55,17 @@ static function ctrNumFactura(){
     }else{
         echo $respuesta["max(id_factura)"]+1;
     }
+}
+static public function ctrNuevoCufd(){
+    require "../modelo/FacturaModelo.php";
+
+     $data=array(
+        "cufd"=>$_POST["cufd"],
+        "fechaVigCufd"=>$_POST["fechaVigCufd"],
+        "codControlCufd"=>$_POST["codControlCufd"]
+
+     );
+
+     ModeloFactura::mdlNuevoCufd($data);
 }
 }

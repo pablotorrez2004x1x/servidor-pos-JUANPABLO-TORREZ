@@ -57,4 +57,5 @@ class ModeloFactura{
       $stmt->close();
       $stmt->null;
     }
+    
 }
