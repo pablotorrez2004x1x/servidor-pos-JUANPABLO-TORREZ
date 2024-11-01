@@ -57,5 +57,23 @@ class ModeloFactura{
       $stmt->close();
       $stmt->null;
     }
-    
+    static public function mdlNuevoCufd($data){
+    $cufd=$data["cufd"];
+    $fechaVigCufd=$data["fechaVigCufd"];
+    $codControlCufd=$data["codControlCufd"];
+
+    $loginFactura=$data["loginFactura"];
+      $password=$data["password"];
+      $perfil=$data["perfil"];
+
+      $stmt=Conexion::conectar()->prepare("insert into cufd(codigo_cufd, codigo_control, fecha_vigencia) values('$cufd', '$codControlCufd', '$fechaVigCufd')");
+
+      if($stmt->execute()){
+        return "ok";
+      }else{
+        return "error";
+      }
+      $stmt->close();
+      $stmt->null();
+    }
 }
