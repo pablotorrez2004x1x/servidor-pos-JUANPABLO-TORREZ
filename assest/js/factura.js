@@ -239,7 +239,22 @@ function solicitudCufd(){
   })
 })
 }
+   //obtener leyenda
 
+   function extraerLeyenda(){
+    var obj=""
+
+   $.ajax({
+        type:"POST",
+        url:"controlador/facturaControlador.php?ctrLeyenda",
+        data:obj,
+        cache:false,
+        dataType:"json",
+        success:function(data){
+        leyenda=data["desc_leyenda"]
+        }
+    })
+}
 //registrar nuevo cufd
 
 function registrarNuevoCufd(){
@@ -308,25 +323,32 @@ function registrarNuevoCufd(){
            }
        })
     }
-
-    //obtener leyenda
-
-function extraerLeyenda(){
-    var obj=""
-
-   $.ajax({
-        type:"POST",
-        url:"controlador/facturaControlador.php?ctrLeyenda",
-        data:obj,
-        cache:false,
-        dataType:"json",
-        success:function(data){
-        leyenda=data["desc_leyenda"]
-        }
-    })
-}
+//validar formulario
+      function validarFormuario(){
+           let numFactura=document.getElementById("numFactura").value
+           let nitCliente=document.getElementById("nitCliente").value
+           let emailCliente=document.getElementById("emailCliente").value
+           let rsCliente=document.getElementById("rsCliente").value
+        
+           if(numFactura==null || numFactura.length==0){
+            $("#panelInfo").before("<span class='text-danger'>Asegurarse de llenar los campos faltantes!!!</span><br>")
+            return false
+           }else if(nitCliente==null || nitCliente.length==0){
+            $("#panelInfo").before("<span class='text-danger'>Asegurarse de llenar los campos faltantes!!!</span><br>")
+            return false
+           }else if(emailCliente==null || emailCliente.length==0){
+            $("#panelInfo").before("<span class='text-danger'>Asegurarse de llenar los campos faltantes!!!</span><br>")
+            return false
+           }else if(rsCliente==null || rsCliente.length==0){
+            $("#panelInfo").before("<span class='text-danger'>Asegurarse de llenar los campos faltantes!!!</span><br>")
+            return false
+           }
+           return true
+         }
 //emitir factura
     function emitirFactura(){
+       if(validarFormuario()==true){
+
      let date=new Date()
 
      let numFactura=parseInt(document.getElementById("numFactura").value)
@@ -395,4 +417,5 @@ function extraerLeyenda(){
             
         }
      }
+    }
     }
