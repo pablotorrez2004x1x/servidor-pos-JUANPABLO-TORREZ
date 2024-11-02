@@ -12,6 +12,7 @@ var token="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTdXBlcmppY2hvMzMiLCJj
 var cufd;
 var codControlCufd;
 var fechaVigCufd;
+var leyenda;
 
 function verificarComunicacion(){
 
@@ -259,7 +260,7 @@ function registrarNuevoCufd(){
         cache:false,
         success:function(data){
 
-            if´(data=="ok"){
+            if(data=="ok"){
 
             $("#panelInfo").before("<span class='text-primary'>Cufd registrado</span><br>")
           }else{
@@ -308,6 +309,22 @@ function registrarNuevoCufd(){
        })
     }
 
+    //obtener leyenda
+
+function extraerLeyenda(){
+    var obj=""
+
+   $.ajax({
+        type:"POST",
+        url:"controlador/facturaControlador.php?ctrLeyenda",
+        data:obj,
+        cache:false,
+        dataType:"json",
+        success:function(data){
+        leyenda=data["desc_leyenda"]
+        }
+    })
+}
 //emitir factura
     function emitirFactura(){
      let date=new Date()
@@ -335,14 +352,14 @@ function registrarNuevoCufd(){
         codigoPuntoVentaSpecified:true,
         codigoSistema: codSistema,
         codigoSucursal:0,
-        cufd:"",
+        cufd:cufd,
         cuis:cuis,
         nit:nitEmpresa,
         tipoFacturaDocumento:1,
         archivo:null,
         fechaEnvio:fechaFactura,
         hashArchivo:"",
-        codigoControl:"",
+        codigoControl:codControlCufd,
         factura:{
             cabecera:{
                 nitEmisor:nitEmpresa,
@@ -351,7 +368,7 @@ function registrarNuevoCufd(){
                 telefono:telEmpresa,
                 numeroFactura:numFactura,
                 cuf:"String",
-                cufd:"",
+                cufd:cufd,
                 codigoSucursal:0,
                 direccion:dirEmpresa,
                 codigoPuntoVenta:0,
@@ -369,7 +386,7 @@ function registrarNuevoCufd(){
                 descuentoAdicional:descAdicional,
                 codigoExcepcion:"0",
                 cafc:null,
-                leyenda:"",
+                leyenda:leyenda,
                 usuario:usuarioLogin,
                 codigoDocumentoSector:1
             },

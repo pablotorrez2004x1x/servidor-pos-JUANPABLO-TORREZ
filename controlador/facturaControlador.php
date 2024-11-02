@@ -7,6 +7,7 @@ if(isset($ruta["query"])){
     $ruta["query"]=="ctrNumtFactura"||
     $ruta["query"]=="ctrUltimoCufd"||
     $ruta["query"]=="ctrNuevoCufd"||
+    $ruta["query"]=="ctrLeyenda"||
     $ruta["query"]=="ctrEliFactura"){
    $metodo=$ruta["query"];
    $Factura=new ControladorFactura();
@@ -75,5 +76,11 @@ static public function ctrUltimoCufd(){
     $respuesta=ModeloFactura::mdlUltimoCufd();
     echo json_encode($respuesta);
 
+}
+static public function ctrLeyenda(){
+    require "../modelo/FacturaModelo.php";
+
+    $respuesta=ModeloFactura::mdlLeyenda();
+    echo json_encode($respuesta);
 }
 }
