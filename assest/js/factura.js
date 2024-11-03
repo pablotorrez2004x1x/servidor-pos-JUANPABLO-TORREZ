@@ -62,7 +62,8 @@ $.ajax({
             document.getElementById("emailCliente").value=data["email_cliente"]
         }
         document.getElementById("rsCliente").value=data["razon_social_cliente"]
-       numFactura()
+        document.getElementById("idCliente").value=data["idCliente"]
+        numFactura()
     }
 })
 }
@@ -428,8 +429,41 @@ function registrarNuevoCufd(){
         contentType:"aplication/json",
         processData:false,
         success:function(data){
-            console.log(data)
-           }
+       
+            if(data["codigoResultado"]!=908){
+                $("#panelInfo").before("<span class='text-danger'>error factura no emitida!!!</span><br>")
+            }else{
+                $("#panelInfo").before("<span>Registrando Factura...</span><br>")
+
+                let datos={
+                    codigoResultado:data["codigoResultado"],
+                    codigoRecepcion:data["datoAdicional"]["codigoRecepcion"],
+                    cuf:data["datoAdicional"]["cuf"],
+                    sentDate:data["datoAdicional"]["sentDate"],
+                    xml:data["datoAdicional"]["xml"],
+                }
+                registrarFactura(datos)
+            }
+        }
          })
       }
+   }
+
+   function registrarFactura(datos){
+    let numFactura=document.getElementById("numFactura").value
+    let idCliente=document.getElementById("idCliente").value
+    let subTotal=parseFloat(document.getElementById("subTotal").value)
+    let descAdicional=parseFloat(document.getElementById("descAdicional").value)
+    let totApagar=parseFloat(document.getElementById("totApagar").value)
+
+     let obj={
+        "codFactura":numFactura,
+        "idCliente":idCliente,
+        "detalle":JSON.stringify(arregloCarrito),
+        "neto":subTotal,
+        "descuento":descAdicional,
+        "total":totApagar,
+        "fechaEmision"
+
+     }
    }
