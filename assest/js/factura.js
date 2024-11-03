@@ -404,6 +404,9 @@ function registrarNuevoCufd(){
                 numeroTarjeta:null,
                 montoTotal:subTotal,
                 montoTotalSujetoIva:totApagar,
+                codigoMoneda:1,
+                tipoCambio: 1,
+                montoTotalMoneda:totApagar,
                 montoGiftCard:0,
                 descuentoAdicional:descAdicional,
                 codigoExcepcion:"0",
@@ -417,5 +420,16 @@ function registrarNuevoCufd(){
             
         }
      }
-    }
-    }
+     $.ajax({
+        type:"POST",
+        url:host+"api/CompraVenta/recepcion",
+        data:JSON.stringify(obj),
+        cache:false,
+        contentType:"aplication/json",
+        processData:false,
+        success:function(data){
+            console.log(data)
+           }
+         })
+      }
+   }
