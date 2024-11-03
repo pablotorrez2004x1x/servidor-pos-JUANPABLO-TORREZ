@@ -95,4 +95,30 @@ class ModeloFactura{
       $stmt->close();
       $stmt->null;
     }
+    static public function mdlRegistrarFactura($data){
+
+        $codFactura=$data["codFactura"];
+        $idCliente=$data["idCliente"];
+        $detalle=$data["detalle"];
+        $neto=$data["neto"];
+        $descuento=$data["descuento"];
+        $total=$data["total"];
+        $fechaEmision=$data["fechaEmision"];
+        $cufd=$data["cufd"];
+        $cuf=$data["cuf"];
+        $xml=$data["xml"];
+        $idUsuario=$data["idUsuario"];
+        $usuario=$data["usuario"];
+        $leyenda=$data["leyenda"];
+             
+        $stmt=Conexion::conectar()->prepare("insert into Factura(cod_Factura, id_Cliente, detalle, neto, descuento, total, fecha_emision, cufd, cuf, xml, id_usuario, usuario, leyenda) values('$codFactura', '$idCliente', '$detalle', '$neto', '$descuento', '$total', '$fechaEmision', '$cufd', '$cuf', '$xml', '$idUsuario', '$usuario', '$leyenda')");
+
+      if($stmt->execute()){
+        return "ok";
+      }else{
+        return "error";
+      }
+      $stmt->close();
+      $stmt->null();
+    }
 }

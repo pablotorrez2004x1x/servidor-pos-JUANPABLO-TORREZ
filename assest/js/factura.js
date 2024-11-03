@@ -486,6 +486,33 @@ function registrarNuevoCufd(){
         "xml":datos["xml"],
         "idUsuario":idUsuario,
         "usuario":usuarioLogin,
+        "leyenda":leyenda
 
     }
-   }
+    $.ajax({
+        type:"POST",
+        url:"controlador/facturaControlador.php?ctrRegistrarFactura",
+        data:obj,
+        cache:false,
+        success:function(data){
+           if(data=="ok"){
+            Swal.fire({
+                icon:"success",
+                showConfirmButton:false,
+                title:"factura registrada"
+            })
+
+            setTimeout(function(){
+                location.reload()
+            }, 1000)
+           }else{
+            Swal.fire({
+                icon:"error",
+                showConfirmButton:false,
+                tittle:"error de registro",
+                timer:1500
+                })
+              }
+             }
+             })
+              }
