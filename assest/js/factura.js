@@ -324,6 +324,19 @@ function registrarNuevoCufd(){
            }
        })
     }
+
+    //transformar fecha con formato iso 8601
+    function transformarFecha(fechaISO){
+
+        let fecha_iso=fechaISO.split("T")
+        let hora_iso=fecha_iso[1].split(".")
+
+        let fecha=fecha_iso[0]
+        let hora=hora_iso[0]
+
+        let fecha_hora=fecha+" "+hora
+        return fecha_hora
+    }
 //validar formulario
       function validarFormuario(){
            let numFactura=document.getElementById("numFactura").value
@@ -455,6 +468,10 @@ function registrarNuevoCufd(){
     let subTotal=parseFloat(document.getElementById("subTotal").value)
     let descAdicional=parseFloat(document.getElementById("descAdicional").value)
     let totApagar=parseFloat(document.getElementById("totApagar").value)
+    let fechaEmision=transformarFecha(datos["sentDate"])
+    let idUsuario=document.getElementById("idUsuario").value
+    let usuarioLogin=document.getElementById("usuarioLogin").innerHTML
+
 
      let obj={
         "codFactura":numFactura,
@@ -463,7 +480,12 @@ function registrarNuevoCufd(){
         "neto":subTotal,
         "descuento":descAdicional,
         "total":totApagar,
-        "fechaEmision"
+        "fechaEmision":fechaEmision,
+        "cufd":cufd,
+        "cuf":datos["cuf"],
+        "xml":datos["xml"],
+        "idUsuario":idUsuario,
+        "usuario":usuarioLogin,
 
-     }
+    }
    }
