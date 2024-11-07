@@ -58,7 +58,7 @@ $producto=ControladorProducto::ctrInfoProducto($id);
                     </tr>
                 </table>
                     </div>
-                    <div class="col-sm-6" style="text:align:center">
+                    <div class="col-sm-6" style="text-align:center">
 
 <?php 
                 if($producto["imagen_producto"]==""){

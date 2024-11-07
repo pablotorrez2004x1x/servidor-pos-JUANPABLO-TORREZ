@@ -516,3 +516,16 @@ function registrarNuevoCufd(){
              }
              })
               }
+    function MVerFactura(id){
+     $("#modal-lg").modal("show")
+
+    var obj=""
+    $.ajax({
+        type:"POST",
+        url:"vista/factura/MVerFactura.php?id="+id,
+        data:obj,
+        success:function(data){
+            $("#content-default").html(data)
+        }
+    })
+              }

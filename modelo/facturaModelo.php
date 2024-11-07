@@ -13,23 +13,9 @@ class ModeloFactura{
       $stmt->close();
       $stmt->null;
 }
-    static public function mdlRegFactura($data){
-      $loginFactura=$data["loginFactura"];
-      $password=$data["password"];
-      $perfil=$data["perfil"];
-
-      $stmt=Conexion::conectar()->prepare("insert into Factura(login_Factura, password, perfil) values('$loginFactura', '$password', '$perfil')");
-
-      if($stmt->execute()){
-        return "ok";
-      }else{
-        return "error";
-      }
-      $stmt->close();
-      $stmt->null();
-    }
+  
     static public function mdlInfoFactura($id){
-      $stmt=Conexion::conectar()->prepare("select * from Factura where id_Factura=$id");
+      $stmt=Conexion::conectar()->prepare("SELECT * FROM factura JOIN cliente ON cliente.id_cliente=factura.id_cliente where id_Factura=$id");
       $stmt->execute();
 
       return $stmt->fetch();

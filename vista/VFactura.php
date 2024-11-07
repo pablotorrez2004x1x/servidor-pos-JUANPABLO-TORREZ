@@ -25,7 +25,7 @@
                     <th>Total</th>
                     <th>Estado</th>
                     <td>
-                    <button class="btn btn-primary" onclick="MNuevoProducto()">Nuevo</button>
+                        <a href="FormVenta" class="btn btn-primary">Nuevo</a>
                 </td>
                 </tr>
                   </thead>
