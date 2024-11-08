@@ -5,7 +5,7 @@ require_once "../../modelo/facturaModelo.php";
 $id=$_GET["id"];
 
 $factura=ControladorFactura::ctrInfoFactura($id);
-
+$producto=json_decode($factura["detalle"], true);
 ?>
 
 <div class="modal-header bg-info">
@@ -24,7 +24,7 @@ $factura=ControladorFactura::ctrInfoFactura($id);
                     </tr>
                     <tr>
                         <th>Cliente:</th>
-                        <td><?php echo $factura["razon_social_cliente"]." - ".$factura["nit_ci_cliente"];?></td>
+                        <td><?php echo $factura["nit_ci_cliente"];?></td>
                     </tr>
                     <tr>
                         <th>fecha:</th>
@@ -54,7 +54,35 @@ $factura=ControladorFactura::ctrInfoFactura($id);
                     </div>
                     <div class="col-sm-6" style="text-align:center">
 
-            
+            <table class="table">
+                <thead>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Descuento</th>
+                    <th>Total</th>
+
+                </thead>
+                <tbody>
+                    <?php
+                    foreach($producto as $value){
+                        ?>
+                        <tr>
+                            <td><?php echo $value["descripcion"];?></td>
+                            <td><?php echo $value["cantidad"];?></td>
+                            <td><?php echo $value["precioUnitario"];?></td>
+                            <td><?php echo $value["montoDescuento"];?></td>
+                            <td><?php echo $value["subTotal"];?></td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                    <tr>
+                        <td colspan="4"><b>Total</b></td>
+                        <td><?php echo $factura["neto"];?></td>
+                    </tr>
+                </tbody>
+            </table>
                                    </div>
                 </div>
         </div>

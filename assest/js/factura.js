@@ -517,7 +517,7 @@ function registrarNuevoCufd(){
              })
               }
     function MVerFactura(id){
-     $("#modal-lg").modal("show")
+     $("#modal-xl").modal("show")
 
     var obj=""
     $.ajax({
@@ -525,7 +525,7 @@ function registrarNuevoCufd(){
         url:"vista/factura/MVerFactura.php?id="+id,
         data:obj,
         success:function(data){
-            $("#content-default").html(data)
+            $("#content-xl").html(data)
         }
     })
               }
