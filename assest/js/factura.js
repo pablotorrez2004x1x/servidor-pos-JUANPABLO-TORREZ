@@ -529,3 +529,39 @@ function registrarNuevoCufd(){
         }
     })
               }
+    function MEliFactura(cuf){  
+
+        let obj={
+            codigoAmbiente:2,
+            codigoPuntoVenta:0,
+            codigoPuntoVentaSpecified:true,
+            codigoSistema:codSistema,
+            codigoSucursal:0,
+            nit:nitEmpresa,
+            codigoDocumentoSector:1,
+            codigoEmision:1,
+            codigoModalidad:2,
+            cufd:cufd,
+            cuis:cuis,
+            tipoFacturaDocumento:1,
+            codigoMotivo:1,
+            cuf:cufd
+        }
+
+        Swal.fire({
+            title:"estas seguro de anular factura?",
+            showDenyButton:true,
+            showCancelButton:false,
+            confirmButtonText:"Confirmar",
+            denyButtonText:"cancelar"
+        }).then((result)=>{
+            if(result.isConfirmed){
+            //ANULAR LA FACTURA
+            $.ajax({
+                type:"POST",
+                url:host+""
+            })
+        }
+        })
+    }
+
