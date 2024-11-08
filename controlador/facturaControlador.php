@@ -72,7 +72,8 @@ static public function ctrRegistrarFactura(){
     require "../modelo/facturaModelo.php";
 
 
-          $data=array{           
+          $data=array{       
+                
         "codFactura"=>$_POST["codFactura"],
         "idCliente"=>$_POST["idCliente"],
         "detalle"=>$_POST["detalle"],

@@ -39,11 +39,14 @@
 <script src="assest/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- ChartJS -->
 <script src="assest/plugins/chart.js/Chart.min.js"></script>
-
+<!-- 
 <script src="assest/js/usuario.js"></script>
-<script src="assest/js/cliente.js"></script>
+<script src="assest/js/cliente.js"></script>-->
 <script src="assest/js/producto.js"></script>
 <script src="assest/js/factura.js"></script>
+<script src="assest/js/reporte.js"></script>
+
+
 
 <div class="modal fade" id="modal-default">
         <div class="modal-dialog">
