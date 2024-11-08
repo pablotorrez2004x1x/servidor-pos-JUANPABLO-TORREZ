@@ -7,7 +7,7 @@ if(isset($ruta["query"])){
     $ruta["query"]=="ctrNuevoCufd"||
     $ruta["query"]=="ctrLeyenda"||
     $ruta["query"]=="ctrRegistrarFactura"||
-    $ruta["query"]=="ctrEliFactura"){
+    $ruta["query"]=="ctrAnularFactura"){
    $metodo=$ruta["query"];
    $Factura=new ControladorFactura();
    $Factura->$metodo();
@@ -25,16 +25,16 @@ static public function ctrInfoFactura($id){
     $respuesta=ModeloFactura::mdlInfoFactura($id);
     return $respuesta;
 }
-static function ctrEliFactura(){
-    require "../modelo/FacturaModelo.php";
+static function ctrAnularFactura(){
+    require "../modelo/facturaModelo.php";
 
-    $id=$_POST["id"];
+    $cuf=$_POST["cuf"];
 
-    $respuesta=ModeloFactura::mdlEliFactura($id);
+    $respuesta=ModeloFactura::mdlAnularFactura($cuf);
     echo $respuesta;
 }
 static function ctrNumFactura(){
-    require "../modelo/FacturaModelo.php";
+    require "../modelo/facturaModelo.php";
     $respuesta=ModeloFactura::mdlNumFactura();
 
     if($respuesta["max(id_factura)"]==null){
@@ -44,7 +44,7 @@ static function ctrNumFactura(){
     }
 }
 static public function ctrNuevoCufd(){
-    require "../modelo/FacturaModelo.php";
+    require "../modelo/facturaModelo.php";
 
      $data=array(
         "cufd"=>$_POST["cufd"],
@@ -56,14 +56,14 @@ static public function ctrNuevoCufd(){
      echo ModeloFactura::mdlNuevoCufd($data);
 }
 static public function ctrUltimoCufd(){
-    require "../modelo/FacturaModelo.php";
+    require "../modelo/facturaModelo.php";
 
     $respuesta=ModeloFactura::mdlUltimoCufd();
     echo json_encode($respuesta);
 
 }
 static public function ctrLeyenda(){
-    require "../modelo/FacturaModelo.php";
+    require "../modelo/facturaModelo.php";
 
     $respuesta=ModeloFactura::mdlLeyenda();
     echo json_encode($respuesta);

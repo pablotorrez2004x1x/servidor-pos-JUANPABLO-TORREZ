@@ -559,9 +559,34 @@ function registrarNuevoCufd(){
             //ANULAR LA FACTURA
             $.ajax({
                 type:"POST",
-                url:host+""
+                url:host+"api/CompraVenta/anulacion",
+                data:JSON.stringify(obj),
+                cache:false,
+                contentType:"application/json",
+                processData:false,
+                success:function(data){
+                    if(data["codigoEstado"]==905){
+
+                        //ANULAR DB
+                        anularFactura(cuf)
+                    }
+                }
             })
         }
+        })
+    }
+    function anularFactura(cuf){
+
+        let obj={
+            cuf:cuf
+        }
+        $.ajax({
+            type:"POST",
+            url:host+"controlador/facturaControlador.php?ctrEliFactura",
+            data:obj,
+            success:function(data){
+                console.log(data)
+            }
         })
     }
 

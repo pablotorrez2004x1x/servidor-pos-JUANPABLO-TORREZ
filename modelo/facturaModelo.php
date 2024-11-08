@@ -23,8 +23,8 @@ class ModeloFactura{
       $stmt->close();
       $stmt->null;
     }
-    static public function mdlEliFactura($id){
-      $stmt=Conexion::conectar()->prepare("delete from Factura where id_Factura=$id");
+    static public function mdlAnularFactura($cuf){
+      $stmt=Conexion::conectar()->prepare("update factura set estado_factura=0 where cuf='$cuf'");
 
       if($stmt->execute()){
         return "ok";
