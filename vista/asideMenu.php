@@ -31,7 +31,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="assest/dist/img/Logo_POS.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity:.8">
-      <span class="brand-text font-weight-light">Sistema</span>
+      <span class="brand-text font-weight-light">Sistema POS </span>
     </a>
 
     <!-- Sidebar -->

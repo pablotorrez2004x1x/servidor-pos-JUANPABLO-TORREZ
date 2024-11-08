@@ -106,12 +106,12 @@ $.ajax({
 }
 function calcularPreProd(){
     let cantPro=parseInt(document.getElementById("cantProducto").value)
-    let descProducto=parseInt(document.getElementById("descProducto").value)
-    let preUnit=parseInt(document.getElementById("preUnitario").value)
+    let descProducto=parseFloat(document.getElementById("descProducto").value)
+    let preUnit=parseFloat(document.getElementById("preUnitario").value)
 
-    let preProducto=preUnit-descProducto
+    let preProducto=(preUnit*cantPro)-descProducto
 
-    document.getElementById("preTotal").value=preProducto*cantPro
+    document.getElementById("preTotal").value=preProducto
 }
 
 //carrito
@@ -434,6 +434,9 @@ function registrarNuevoCufd(){
             
         }
      }
+
+     console.log(JSON.stringify(obj))
+     
      $.ajax({
         type:"POST",
         url:host+"api/CompraVenta/recepcion",
@@ -569,6 +572,15 @@ function registrarNuevoCufd(){
 
                         //ANULAR DB
                         anularFactura(cuf)
+                    }else{
+
+                        Swal.fire({
+                            icon:'error',
+                            title:'Error!!!',
+                            text:'Anulacion rechazada',
+                            showConfirmButton:false,
+                            timer:1000
+                        })
                     }
                 }
             })
@@ -585,7 +597,27 @@ function registrarNuevoCufd(){
             url:host+"controlador/facturaControlador.php?ctrEliFactura",
             data:obj,
             success:function(data){
-                console.log(data)
+                //AVISO DE CONFIRMACION
+                if(data=="ok"){
+                    Swal.fire({
+                        icon:'success',
+                        title:'Factura anulada',
+                        showConfirmButton:false,
+                        timer:1000
+                    })
+
+                    setTimeout(function(){
+                        location.reload()
+                    },1200)
+                }else{
+                    Swal.fire({
+                        icon:'error',
+                        title:'Error!!!',
+                        text:'Error al anular en el registro',
+                        showConfirmButton:false,
+                        timer:1000
+                    })
+                    }
             }
         })
     }
