@@ -19,12 +19,17 @@
 <link rel="icon" href="assest/dist/img/Logo_POS.png">
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="assest/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+   <!-- Daterange picker -->
+   <link rel="stylesheet" href="assest/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="assest/summernote/summernote-bs4.min.css">
 </head>
 
 <?php
 
+if(isset($_SESSION["ingreso"]) && $_SESSION["ingreso"]=="ok"){
 
-if(isset($_GET["ruta"])){
+  if(isset($_GET["ruta"])){
 
   if($_GET["ruta"]=="inicio"||
      $_GET["ruta"]=="VCliente"||
@@ -39,10 +44,11 @@ if(isset($_GET["ruta"])){
     include $_GET["ruta"].".php";
 
     include "footer.php";
-}
-}
-
-else{
+    }  
+}else{
+  include "vista/login.php";
+   }
+}else{
   include "vista/login.php";
 }
 
