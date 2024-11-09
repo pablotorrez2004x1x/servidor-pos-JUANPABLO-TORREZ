@@ -88,4 +88,11 @@ static public function ctrBusProducto(){
     $respuesta=ModeloProducto::mdlBusProducto($codProducto);
     echo json_encode($codProducto);
 }
+
+static public function ctrCantidadProductos(){
+
+    $respuesta=ModeloProducto::mdlCantidadProductos();
+    return $respuesta;
+}
+
 }

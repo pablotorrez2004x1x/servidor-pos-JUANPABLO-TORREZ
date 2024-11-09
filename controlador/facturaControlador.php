@@ -72,7 +72,7 @@ static public function ctrRegistrarFactura(){
     require "../modelo/facturaModelo.php";
 
 
-          $data=array{       
+          $data=array( 
                 
         "codFactura"=>$_POST["codFactura"],
         "idCliente"=>$_POST["idCliente"],
@@ -87,9 +87,14 @@ static public function ctrRegistrarFactura(){
         "idUsuario"=>$_POST["idUsuario"],
         "usuario"=>$_POST["usuario"],
         "leyenda"=>$_POST["leyenda"]
-             };
+          );
 
              $respuesta=ModeloFactura::mdlRegistrarFactura($data);
              echo $respuesta;
           }
+          static public function ctrCantidadVentas(){
+
+            $respuesta=ModeloFactura::mdlCantidadVentas();
+            return $respuesta;
+        }
         }

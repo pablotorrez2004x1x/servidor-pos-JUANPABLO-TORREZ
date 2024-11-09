@@ -87,5 +87,14 @@ class ModeloUsuario{
       $stmt->close();
       $stmt->null();
     }
-    
+    static public function mdlCantidadUsuarios(){
+
+      $stmt=Conexion::conectar()->prepare("select count(*) as usuario from usuario");
+      $stmt->execute();
+
+      return $stmt->fetch();
+
+      $stmt->close();
+      $stmt->null;
+    }
 }

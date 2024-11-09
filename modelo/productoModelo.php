@@ -95,4 +95,14 @@ class ModeloProducto{
       $stmt->close();
       $stmt->null;
     }
+    static public function mdlCantidadProductos(){
+
+      $stmt=Conexion::conectar()->prepare("select count(*) as producto from producto");
+      $stmt->execute();
+
+      return $stmt->fetch();
+
+      $stmt->close();
+      $stmt->null;
+    }
 }
